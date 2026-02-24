@@ -1,0 +1,150 @@
+/* @theme jay-brand */
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+:root {
+  --c-white: #ffffff;
+  --c-soft: #e0e0db;
+  --c-navy: #253551;
+  --c-charcoal: #2a2829;
+  --c-black: #000000;
+
+  --bg: var(--c-white);
+  --fg: var(--c-charcoal);
+  --accent: var(--c-navy);
+  --muted: rgba(42, 42, 41, 0.6);
+  --line: rgba(42, 42, 41, 0.15);
+
+  --pad-x: 72px;
+  --pad-y: 60px;
+}
+
+/* ---------------- BASE SLIDE ---------------- */
+
+section {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  padding: var(--pad-y) var(--pad-x);
+}
+
+/* Paragraphs */
+section,
+section p,
+section li {
+  font-weight: 400;
+  line-height: 1.3em;
+  letter-spacing: -0.02em;
+  font-size: 1.1rem;
+}
+
+/* ---------------- HEADINGS ---------------- */
+
+h1, h2, h3, h4 {
+  font-weight: 400;
+  line-height: 1.1em;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.4em 0;
+  color: var(--c-black);
+}
+
+h1 { font-size: 4rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2.1rem; }
+h4 { font-size: 1.4rem; }
+
+/* ---------------- LINKS ---------------- */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(37, 53, 81, 0.4);
+}
+
+/* ---------------- LISTS ---------------- */
+
+ul, ol {
+  margin: 0.5em 0 0.2em 1.2em;
+}
+li {
+  margin: 0.25em 0;
+}
+
+/* ---------------- HEADER (LOGO) ---------------- */
+
+header {
+  position: absolute;
+  top: 20px;
+  right: 72px;
+  left: auto;
+  width: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+header img {
+  height: 32px;
+  width: auto;
+  display: block;
+  opacity: 0.95;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+  position: absolute;
+  bottom: 24px;
+  left: 72px;
+  right: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* Page number (right) */
+section::after {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ---------------- DARK SLIDE OPTION ---------------- */
+
+section.inverse {
+  background: var(--c-navy);
+  color: var(--c-white);
+}
+
+section.inverse h1,
+section.inverse h2,
+section.inverse h3,
+section.inverse h4 {
+  color: var(--c-white);
+}
+
+section.inverse footer {
+  color: rgba(255,255,255,0.7);
+}
+
+section.inverse header img {
+  filter: brightness(0) invert(1);
+}
+
+/* ---------------- TITLE SLIDE ---------------- */
+
+section.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section.title h1 {
+  color: var(--c-navy);
+}
+
+section.title footer {
+  display: none; /* hide footer on title slide */
+}
