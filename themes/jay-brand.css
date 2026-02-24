@@ -17,8 +17,6 @@
 
   --pad-x: 72px;
   --pad-y: 60px;
-
-  /* Add a little safety margin for dense slides */
   --base-font: 1.05rem;
 }
 
@@ -30,13 +28,13 @@ section {
   font-family: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   padding: var(--pad-y) var(--pad-x);
 
-  /* HARDENING: prevent weird overflow wrapping (your nested list + last slide issue) */
+  /* Structural hardening */
   box-sizing: border-box;
   height: 100%;
   overflow: hidden;
 }
 
-/* Paragraphs */
+/* Paragraphs & body text */
 section,
 section p,
 section li {
@@ -46,14 +44,15 @@ section li {
   font-size: var(--base-font);
 }
 
-/* Slightly tighter list footprint to avoid slide height overflow */
+/* Lists */
 section ul,
 section ol {
   margin: 0.5em 0 0.2em 1.2em;
-  font-size: 1rem;          /* reduce list size slightly */
+  font-size: 1rem;
 }
+
 section li {
-  margin: 0.22em 0;         /* tighten vertical spacing a bit */
+  margin: 0.22em 0;
 }
 
 /* ---------------- HEADINGS ---------------- */
@@ -99,38 +98,26 @@ header img {
   opacity: 0.95;
 }
 
-/* ---------------- FOOTER ---------------- */
+/* ---------------- GLOBAL FOOTER ---------------- */
 
-footer {
+/* Left-side brand (automatic on every slide) */
+section::before {
+  content: "Bilakhia Consulting";
   position: absolute;
-  bottom: 24px;
   left: 72px;
-  right: 72px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  bottom: 24px;
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--muted);
 }
 
-/* Inject static left-side branding */
-footer::before {
-  content: "Bilakhia Consulting";
-}
-
-/* Optional: keep right side available for custom content */
-footer span {
-  display: inline-block;
-}
-
-/* Page number alignment */
+/* Page number (right side, from Marp paginate) */
 section::after {
-  color: var(--muted);
-  font-size: 0.8rem;
   position: absolute;
   right: 72px;
   bottom: 24px;
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 /* ---------------- DARK SLIDE OPTION ---------------- */
@@ -147,7 +134,11 @@ section.inverse h4 {
   color: var(--c-white);
 }
 
-section.inverse footer {
+section.inverse::before {
+  color: rgba(255,255,255,0.7);
+}
+
+section.inverse::after {
   color: rgba(255,255,255,0.7);
 }
 
@@ -168,6 +159,8 @@ section.title h1 {
   color: var(--c-navy);
 }
 
-section.title footer {
-  display: none; /* hide footer on title slide */
+/* Hide footer and page number on title slide */
+section.title::before,
+section.title::after {
+  display: none;
 }
